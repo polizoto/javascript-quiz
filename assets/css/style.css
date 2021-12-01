@@ -1,0 +1,31 @@
+body {
+    font-family: sans-serif;
+    background-color: #f9fbfd;
+}
+main {
+    border: solid;
+    color: #000000;
+    border-radius: 12px;
+    padding: 30px 30px 300px 30px;
+    margin: 25px 50px 25px 50px;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.content-area {
+    margin: 100px 400px 50px 400px;
+}
+.h1 {
+text-align: center;
+}
+
+.feedback {
+    /* text-align: left; */
+    color: gray;
+    border-top: 2px solid gray;
+    font-style: italic;
+    font-size: 25px;
+}
