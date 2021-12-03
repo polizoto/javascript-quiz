@@ -3,9 +3,6 @@ body {
     background-color: #f9fbfd;
 }
 main {
-    border: solid;
-    color: #000000;
-    border-radius: 12px;
     padding: 30px 30px 300px 30px;
     margin: 25px 50px 25px 50px;
 }
@@ -13,19 +10,122 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
+.high-score a {
+    text-decoration: none;
+    color: #351C75;
+}
+
+.high-score a:hover {
+    color: #351C75;
+    background-color: yellow;
+    border: .5px    solid black;
+    padding: 10px;
+}
+
+.high-score a:focus {
+    color: #351C75;
+    background-color: yellow;
+    padding: 10px;
+}
+/* area containing the questions, answers and feedback */
 .content-area {
-    margin: 100px 400px 50px 400px;
-}
-.h1 {
-text-align: center;
+    font-size: 18px;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 30px 40px;    
 }
 
+.main   {
+    /* display: flex; */
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    min-width: 200px;
+}
+
+/* inside main div */
+p {
+    text-align: center;
+    min-width: 200px;
+}
+/* div that contains the answers */
+.answers-group {
+    max-width: 600px;
+    min-width: 100px;
+}
+
+/* button to start the quiz */
+.start {
+    color: white;
+    background-color: #351C75;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    margin:16px 0px 0px 0px;
+    padding: 10px 15px;
+    max-width: 500px;
+    min-width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+/* buttons for each quiz item */
+.answers {
+    color: white;
+    background-color: #351C75;
+    border-radius: 5px;
+    border: none;
+    text-align: left;
+    margin:16px 0px 0px 0px;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+button:hover {
+    color: #351C75;
+    background-color: yellow;
+    border: .5px solid black;
+}
+
+button:focus {
+    color: #351C75;
+    background-color: yellow;
+}
+
+/* Gives Wrong! or Correct! answer, which times out after 3 seconds */
 .feedback {
-    /* text-align: left; */
     color: gray;
     border-top: 2px solid gray;
     font-style: italic;
     font-size: 25px;
+    margin: 25px 0px;
 }
+
+@media (max-width: 600px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        padding: 30px 40px; 
+        justify-content: space-around;
+    }
+    .high-score {
+        min-width: 200px;
+        text-align: center;
+        margin: 20px 0px;
+        font-size: 30px;
+    }
+    .counter {
+        min-width: 200px;
+        text-align: center;
+        margin: 60px 0px 0px 0px;
+        font-size: 30px;
+    }
+
+  }
+  
