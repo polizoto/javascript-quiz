@@ -48,6 +48,10 @@ h1 {
     min-width: 200px;
 }
 
+.finish {
+    text-align: left;
+}
+
 /* inside main div */
 p {
     text-align: center;
@@ -103,6 +107,28 @@ button:focus {
     font-style: italic;
     font-size: 25px;
     margin: 25px 0px;
+}
+
+.feedback p {
+    display: flex;
+}
+
+.submit-button {
+    color: white;
+    background-color: #351C75;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    margin:16px 0px 0px 0px;
+    padding: 2px 5px;
+    min-width: 180px;
+    font-size: 16px;
+}
+
+@media (max-width: 728px) {
+    .finish {
+        text-align: center;
+    }
 }
 
 @media (max-width: 600px) {
