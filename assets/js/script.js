@@ -13,6 +13,7 @@ var questions = [
 
 var mainContentEl = document.querySelector("#main-content");
 
+
 var start = function() {
     
     // start the quiz
@@ -30,10 +31,19 @@ var start = function() {
         var startEl = event.target;
         // start button was clicked
         if (startEl.matches(".start")) {
-            mainContentEl.innerHTML = '';
+            // mainContentEl.innerHTML = '';
+            runQuiz();
         } 
     }
     mainContentEl.addEventListener("click", enterQuiz);
+}
+
+var runQuiz = function() {
+    mainContentEl.innerHTML = '';
+    var questionHeading = document.createElement("h1")
+    questionHeading.textContent = questions[0].question
+    mainContentEl.appendChild(questionHeading)
+    console.log(questionHeading);
 }
 
 start()
