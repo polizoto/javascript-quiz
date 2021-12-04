@@ -48,6 +48,32 @@ var topScore5Points = document.createElement("span")
 topScore5Points.setAttribute("data-score", "5")
 topScore5.append("5. ", topScore5Initials," - ", topScore5Points)
 
+var checkScores = function (score) {
+
+    if (score.textContent.length == 0) {
+        score.textContent = 0
+    }
+}
+
+var checkInitials = function (initials) {
+
+    if (initials.textContent.length == 0) {
+        initials.textContent = "TBA"
+    }
+}
+
+checkScores(topScore1Points)
+checkScores(topScore2Points)
+checkScores(topScore3Points)
+checkScores(topScore4Points)
+checkScores(topScore5Points)
+
+checkInitials(topScore1Initials)
+checkInitials(topScore2Initials)
+checkInitials(topScore3Initials)
+checkInitials(topScore4Initials)
+checkInitials(topScore5Initials)
+
 var returnGroup = document.createElement("div")
 returnGroup.className = "return"
 
