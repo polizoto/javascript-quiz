@@ -107,6 +107,7 @@ button:focus {
     font-style: italic;
     font-size: 25px;
     margin: 25px 0px;
+    min-width: 200px;
 }
 
 .feedback p {
@@ -129,13 +130,51 @@ button:focus {
     text-align: left;
 }
 
-@media (max-width: 728px) {
+.initials {
+    /* color: white; */
+    /* background-color: #351C75; */
+    border-radius: 5px;
+    /* border: none; */
+    text-align: center;
+    /* margin: 16px 0px 0px 0px; */
+    padding: 2px 5px;
+    min-width: 180px;
+    font-size: 16px;
+}
+
+.end-button {
+    color: white;
+    background-color: #351C75;
+    border-radius: 5px;
+    border: none;
+    margin: 10px;
+    padding: 2px;
+    min-width: 180px;
+    font-size: 21px;
+    text-align: center;
+}
+
+@media (max-width: 800px) {
     .finish {
         text-align: center;
     }
+
+    .end {
+        text-align: center;
+    }
+
+    .end-button {
+       margin: 10px 10px;
+    }
+
 }
 
 @media (max-width: 600px) {
+
+    .answers-group {
+        text-align: center;
+    }
+    
     header {
         display: flex;
         flex-direction: column;
@@ -155,6 +194,10 @@ button:focus {
         text-align: center;
         margin: 60px 0px 0px 0px;
         font-size: 30px;
+    }
+    
+    .initials {
+        margin: 15px 0px;
     }
 
   }

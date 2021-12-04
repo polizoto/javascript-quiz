@@ -42,37 +42,40 @@ var questions = [
     questionAnswer4.setAttribute("data-answer", "4")
     
     var endQuiz = function () {
-        var endHeading = document.createElement("h2");
-        // mainContentEl.innerHTML = ''
+        // 
         mainContentEl.removeChild(questionHeading)
         answersGroup.removeChild(answerForm1)
         answersGroup.removeChild(answerForm2)
         answersGroup.removeChild(answerForm3)
         answersGroup.removeChild(answerForm4)
-        // endHeading.textContent = "All Done!"
-        // var endMessage = document.createElement("p")
-        // endMessage.className = "end"
-        // endMessage.textContent = "You final score is ";
-        // var endScore = document.createElement("span")
-        // endScore.setAttribute("id", "end-score")
-        // var endFormMessage = document.createElement("p")
-        // endFormMessage.textContent = "Enter initials:  ";
-        // var endInput = document.createElement("input")
-        // endFormMessage.className = "end"
-        // endInput.className = "initials"
-        // var endForm = document.createElement("form");
-        // endForm.setAttribute("id", "end-quiz")
-        // var endButton = document.createElement("button");
-        // endButton.textContent = "Submit"
-        // endButton.className = "end-button";
-        // mainContentEl.appendChild(endHeading)
-        // mainContentEl.appendChild(endMessage)
-        // endMessage.append(endScore)
-        // endMessage.append(".")
-        // mainContentEl.appendChild(endForm)
-        // endForm.appendChild(endFormMessage)
-        // endFormMessage.append(endInput)
-        // endFormMessage.append(endButton)
+        //
+        var endHeading = document.createElement("h2");
+        endHeading.textContent = "All Done!"
+        var endMessage = document.createElement("p")
+        endMessage.className = "end"
+        endMessage.textContent = "You final score is ";
+        var endScore = document.createElement("span")
+        endScore.setAttribute("id", "end-score")
+        var endFormMessage = document.createElement("p")
+        endFormMessage.textContent = "Enter initials:  ";
+        var endInput = document.createElement("input")
+        endFormMessage.className = "end"
+        endInput.className = "initials"
+        var endForm = document.createElement("form");
+        endForm.setAttribute("id", "end-quiz")
+        var endButton = document.createElement("button");
+        endButton.textContent = "Submit"
+        endButton.className = "end-button";
+
+        //
+        answersGroup.prepend(endForm)
+        endForm.appendChild(endFormMessage)
+        endFormMessage.append(endInput)
+        endFormMessage.append(endButton)
+        endMessage.append(endScore)
+        endMessage.append(".")
+        answersGroup.prepend(endMessage)
+        answersGroup.prepend(endHeading)
         
     }
 
@@ -140,7 +143,7 @@ var questions = [
             count++
         }
         if (count === limit) {
-        
+            endQuestions = true
             endQuiz();
             
         }
@@ -163,7 +166,9 @@ var questions = [
               if (timeLeft === 0 ) {
                 timerEl.textContent = '';
                 clearInterval(timeInterval);
-                endQuiz();
+                if (endQuestions === null){
+                    endQuiz();
+                }
               }
               else {
                 timerEl.textContent = "Time: " + timeLeft 
