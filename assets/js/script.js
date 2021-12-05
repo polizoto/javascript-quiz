@@ -67,6 +67,11 @@ var questions = [
         endButton.textContent = "Submit"
         endButton.className = "end-button";
 
+        // 
+
+        var sndCorrect = new Audio("./assets/audio/correct-answer.mp3");
+        var sndWrong = new Audio("./assets/audio/Wrong-answer.mp3");
+
         //
         answersGroup.prepend(endForm)
         endForm.appendChild(endFormMessage)
@@ -77,6 +82,15 @@ var questions = [
         answersGroup.prepend(endMessage)
         answersGroup.prepend(endHeading)
         
+    }
+
+    var userScore = {
+        score : 0,
+        initial: ''
+    }
+
+    var addPoints = function() {
+        userScore.score = userScore.score + 5
     }
 
     var showResult = function(result) {
@@ -100,8 +114,11 @@ var questions = [
     var checkAnswer = function (number, count) {
         if (number === questions[count].answer ) {
             var result = "Correct!"
+            sndCorrect.play();
+            addPoints()
         }
         else {
+            sndWrong.play();
             var result = "Wrong!"
         }
         showResult(result)
