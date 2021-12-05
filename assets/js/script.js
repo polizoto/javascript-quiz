@@ -40,37 +40,63 @@ var questions = [
     var questionAnswer4 = document.createElement("button")
     questionAnswer4.className = "answers"
     questionAnswer4.setAttribute("data-answer", "4")
+    var noInitials = false
 
             // 
             var correctSound = new Audio('./assets/audio/correct.mp3');
             var incorrectSound = new Audio('./assets/audio/wrong.mp3');
+
+    var addHighScore = function (event) {
+            
+            event.preventDefault();
+            var initialsInput = document.querySelector("input[name='initials']").value;
+            
+            if (initialsInput.length > 2) {
+                var initialsLength = true
+            }
+
+            if (!initialsInput) {
+                alert("Please enter your initials.");
+                return false;
+              }
+             else if (initialsLength){
+                alert("Please enter your first and last initials only.");
+                return false;
+             } 
+              else {
+                  mainContentEl.innerHTML = '';
+                  startQuiz()
+              }
+        }      
     
     var endQuiz = function () {
-        // 
-        mainContentEl.removeChild(questionHeading)
-        answersGroup.removeChild(answerForm1)
-        answersGroup.removeChild(answerForm2)
-        answersGroup.removeChild(answerForm3)
-        answersGroup.removeChild(answerForm4)
-        //
-        var endHeading = document.createElement("h2");
-        endHeading.textContent = "All Done!"
-        var endMessage = document.createElement("p")
-        endMessage.className = "end"
-        endMessage.textContent = "You final score is ";
-        var endScore = document.createElement("span")
-        endScore.setAttribute("id", "end-score")
-        var endFormMessage = document.createElement("p")
-        endFormMessage.textContent = "Enter initials:  ";
-        var endInput = document.createElement("input")
-        endFormMessage.className = "end"
-        endInput.className = "initials"
-        var endForm = document.createElement("form");
-        endForm.setAttribute("id", "end-quiz")
-        var endButton = document.createElement("button");
-        endButton.textContent = "Submit"
-        endButton.className = "end-button";
+            // 
+            mainContentEl.removeChild(questionHeading)
+            answersGroup.removeChild(answerForm1)
+            answersGroup.removeChild(answerForm2)
+            answersGroup.removeChild(answerForm3)
+            answersGroup.removeChild(answerForm4)
 
+            //
+            var endHeading = document.createElement("h2");
+            endHeading.textContent = "All Done!"
+            var endMessage = document.createElement("p")
+            endMessage.className = "end"
+            endMessage.textContent = "You final score is ";
+            var endScore = document.createElement("span")
+            endScore.setAttribute("id", "end-score")
+            var endFormMessage = document.createElement("p")
+            endFormMessage.textContent = "Enter initials:  ";
+            var endInput = document.createElement("input")
+            endFormMessage.className = "end"
+            endInput.className = "initials"
+            endInput.setAttribute("name", "initials")
+            var endForm = document.createElement("form");
+            endForm.setAttribute("id", "end-quiz")
+            var endButton = document.createElement("button");
+            endButton.textContent = "Submit"
+            endButton.className = "end-button";
+            
         //
         answersGroup.prepend(endForm)
         endForm.appendChild(endFormMessage)
@@ -80,7 +106,8 @@ var questions = [
         endMessage.append(".")
         answersGroup.prepend(endMessage)
         answersGroup.prepend(endHeading)
-        
+        endScore.textContent = userScore.score
+        endForm.addEventListener("submit", addHighScore);
     }
 
     var userScore = {
@@ -213,7 +240,6 @@ var questions = [
             var startEl = event.target;
             // start button was clicked
             if (startEl.matches("#start-quiz")) {
-            // mainContentEl.innerHTML = '';
             runQuiz();
             listQuestions();
             } 
