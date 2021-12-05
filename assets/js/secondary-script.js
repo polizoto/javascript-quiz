@@ -77,9 +77,16 @@ checkInitials(topScore5Initials)
 var returnGroup = document.createElement("div")
 returnGroup.className = "return"
 
+var returnForm = document.createElement("form")
+returnForm.setAttribute("action", "../index.html")
+returnForm.setAttribute("id", "return-form")
+
 var returnButton = document.createElement("button")
 returnButton.className = "return-button"
 returnButton.textContent = "Go back"
+
+var clearForm = document.createElement("form")
+clearForm.setAttribute("id", "clear-form")
 
 var clearButton = document.createElement("button")
 clearButton.className = "clear-score"
@@ -95,5 +102,56 @@ scoresList.appendChild(topScore4)
 scoresList.appendChild(topScore5)
 
 scoresGroup.appendChild(returnGroup)
-returnGroup.appendChild(returnButton)
-returnGroup.appendChild(clearButton)
+returnGroup.appendChild(returnForm)
+returnGroup.appendChild(clearForm)
+returnForm.appendChild(returnButton)
+clearForm.appendChild(clearButton)
+
+//
+
+var userScore = {
+    score : 0,
+    initial: ''
+}
+
+var addPoints = function() {
+    userScore.score = userScore.score + 5
+}
+
+var highScoresLog = [2, 15, 25, 40, 50]
+
+addPoints()
+userScore.initial = "JP"
+
+// Store user's score in browser
+localStorage["gameScores"] = JSON.stringify(userScore);
+
+
+localStorage["highScoresLog"] = JSON.stringify(highScoresLog);
+
+// Get local storage
+var retrievePoints = JSON.parse(localStorage["gameScores"]);
+var retrieveHighPoints = JSON.parse(localStorage["highScoresLog"]);
+
+console.log(retrievePoints.score);
+
+console.log(retrieveHighPoints);
+
+// Check User score against the set of high Scores
+var checkHighScore = function() {
+    for (var i = 0; i <= retrieveHighPoints.length; i++)
+    if (retrievePoints.score > retrieveHighPoints[i]) {
+        var index = i - 1
+        retrieveHighPoints.splice(1, 0, retrievePoints.score)
+        return console.log(retrieveHighPoints[i]);
+    }
+    else {
+        return console.log("You did not get a high score");
+    }
+}
+// Call the function
+checkHighScore()
+console.log(retrieveHighPoints);
+
+// Update the set of High Scores to include only set of five
+console.log(retrieveHighPoints.slice(1).slice(-5))
