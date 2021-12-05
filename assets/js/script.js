@@ -65,7 +65,8 @@ var questions = [
              } 
               else {
                   mainContentEl.innerHTML = '';
-                  startQuiz()
+                //   startQuiz()
+                window.location.href="./html/high-score.html";
               }
         }      
     
@@ -92,6 +93,7 @@ var questions = [
             endInput.className = "initials"
             endInput.setAttribute("name", "initials")
             var endForm = document.createElement("form");
+            // endForm.setAttribute("action", "./html/high-score.html")
             endForm.setAttribute("id", "end-quiz")
             var endButton = document.createElement("button");
             endButton.textContent = "Submit"
