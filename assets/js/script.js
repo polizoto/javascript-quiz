@@ -40,6 +40,10 @@ var questions = [
     var questionAnswer4 = document.createElement("button")
     questionAnswer4.className = "answers"
     questionAnswer4.setAttribute("data-answer", "4")
+
+            // 
+            var correctSound = new Audio('./assets/audio/correct.mp3');
+            var incorrectSound = new Audio('./assets/audio/wrong.mp3');
     
     var endQuiz = function () {
         // 
@@ -66,11 +70,6 @@ var questions = [
         var endButton = document.createElement("button");
         endButton.textContent = "Submit"
         endButton.className = "end-button";
-
-        // 
-
-        var sndCorrect = new Audio("./assets/audio/correct-answer.mp3");
-        var sndWrong = new Audio("./assets/audio/Wrong-answer.mp3");
 
         //
         answersGroup.prepend(endForm)
@@ -114,12 +113,12 @@ var questions = [
     var checkAnswer = function (number, count) {
         if (number === questions[count].answer ) {
             var result = "Correct!"
-            sndCorrect.play();
+            correctSound.play()
             addPoints()
         }
         else {
-            sndWrong.play();
             var result = "Wrong!"
+            incorrectSound.play()
         }
         showResult(result)
         nextQuestion = true
