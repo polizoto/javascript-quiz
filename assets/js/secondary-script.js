@@ -103,30 +103,30 @@ clearForm.appendChild(clearButton)
 
 var displayScore = function () {
 if (highScoresList.initial[0]) {
-topScore1.append(highScoresList.initial[0] + " - " + highScoresList.score[0])
+topScore1.append(highScoresList.initial[0].toUpperCase() + " - " + highScoresList.score[0])
 }  else {
-   topScore1.append("TBA")
+   topScore1.append("")
 }
 if (highScoresList.initial[1]) {
-    topScore2.append(highScoresList.initial[1] + " - " + highScoresList.score[1])
+    topScore2.append(highScoresList.initial[1].toUpperCase() + " - " + highScoresList.score[1])
 }  else {
-    topScore2.append("TBA")
+    topScore2.append("")
     }
 
 if (highScoresList.initial[2]) {
-    topScore3.append(highScoresList.initial[2] + " - " + highScoresList.score[2])
+    topScore3.append(highScoresList.initial[2].toUpperCase() + " - " + highScoresList.score[2])
 }  else {
-    topScore3.append("TBA")
+    topScore3.append("")
     }
 if (highScoresList.initial[3]) {
-    topScore4.append(highScoresList.initial[3] + " - " + highScoresList.score[3])
+    topScore4.append(highScoresList.initial[3].toUpperCase() + " - " + highScoresList.score[3])
 }  else {
-    topScore4.append("TBA")
+    topScore4.append("")
 }
 if (highScoresList.initial[4]) {
-    topScore5.append(highScoresList.initial[4] + " - " + highScoresList.score[4])
+    topScore5.append(highScoresList.initial[4].toUpperCase() + " - " + highScoresList.score[4])
     }  else {
-    topScore5.append("TBA")
+    topScore5.append("")
     }    
 }    
 

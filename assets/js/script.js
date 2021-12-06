@@ -1,14 +1,104 @@
 var questions = [
     {
-    question: "What is your first name?",
-    choices: ["Joseph", "Fred", "Bill", "Alex"],
+    question: "Which of the following is the correct syntax to create a cookie using JavaScript?",
+    choices: ["document.cookie = 'key1 = value1; key2 = value2; expires = date'", "browser.cookie = 'key1 = value1; key2 = value2; expires = date';", "window.cookie = 'key1 = value1; key2 = value2; expires = date';", "navigator.cookie = 'key1 = value1; key2 = value2; expires = date';"],
     answer: 1
     },
     {
-    question: "What is your last name?",
-    choices: ["Wallace", "Smith", "Thomas", "Black"],
+    question: "Which of the following is true about typeof operator in JavaScript?",
+    choices: ["The typeof is a unary operator that is placed before its single operand, which can be of any type", "Its value is a string indicating the data type of the operand.", "Both of the above.", "None of the above"],
     answer: 3
-    }
+    },
+    {
+    question: "Which built-in method returns the length of the string?",
+    choices: ["length()", "size()", "index()", "None of the above."],
+    answer: 1
+    },
+    {
+    question: "Which built-in method returns the calling string value converted to lower case?",
+    choices: ["toLowerCase()", "toLower()", "changeCase(case)", "None of the above"],
+    answer: 1
+    },
+    {
+    question: "Which of the following function of String object returns a number indicating the Unicode value of the character at the given index?",
+    choices: ["charAt()", "charCodeAt()", "concat()", "indexOf()"],
+    answer: 2
+    },
+    {
+    question: "Which of the following function of String object returns the index within the calling String object of the last occurrence of the specified value?",
+    choices: ["lastIndexOf()", "search()", "substr()", "indexOf()"],
+    answer: 1
+    },
+    {
+    question: "Which of the following function of String object creates a string to be displayed in a big font as if it were in a <big> tag?",
+    choices: ["anchor()", "big()", "blink()", "italics()"],
+    answer: 2
+    },
+    {
+    question: "Which of the following function of String object causes a string to be displayed in a small font, as if it were in a <small> tag?",
+    choices: ["link()", "small()", "sup()", "sub()"],
+    answer: 2
+    },
+    {
+    question: "Which of the following function of Array object calls a function for each element in the array?",
+    choices: ["concat()", "every()", "filter()", "forEach()"],
+    answer: 4
+    },
+    {
+    question: "Which of the following function of Array object applies a function simultaneously against two values of the array (from right-to-left) as to reduce it to a single value?",
+    choices: ["pop()", "push()", "reduce()", "reduceRight()"],
+    answer: 4
+    },
+    {
+    question: "Which is the correct way to write a JavaScript array?",
+    choices: ["var txt = new Array(1:”tim”,2:”kim”,3:”jim”)", "var txt = new Array:1=(“tim”)2=(“kim”)3=(“jim”)", "var txt = new Array(“tim”,”kim”,”jim”)", "var txt = new Array=”tim”,”kim”,”jim”"],
+    answer: 3
+    },
+    {
+    question: "If para1 is the DOM object for a paragraph, what is the correct syntax to change the text within the paragraph?",
+    choices: ["“New Text”?", "para1.value=”New Text”;", "para1.firstChild.nodeValue= “New Text”;", "para1.nodeValue=”New Text”;"],
+    answer: 2
+    },
+    {
+    question: "Which of the following is not considered a JavaScript operator?",
+    choices: ["new", "this", "delete", "typeof"],
+    answer: 2
+    },
+    {
+    question: "______method evaluates a string of JavaScript code in the context of the specified object.",
+    choices: ["Eval", "ParseInt", "ParseFloat", "Efloat"],
+    answer: 1
+    },
+    {
+    question: "The syntax of Eval is _______________",
+    choices: ["[objectName.]eval(numeriC.", "[objectName.]eval(string)", "[EvalName.]eval(string)", "[EvalName.]eval(numeriC."],
+    answer: 2
+    },
+    {
+    question: "The _______ method of an Array object adds and/or removes elements from an array.",
+    choices: ["Reverse", "Shift", "Slice", "Splice"],
+    answer: 4
+    },
+    {
+    question: "To enable data tainting, the end user sets the _________ environment variable.",
+    choices: ["ENABLE_TAINT", "MS_ENABLE_TAINT", "NS_ENABLE_TAINT", "ENABLE_TAINT_NS"],
+    answer: 3
+    },
+    {
+    question: "In JavaScript, _________ is an object of the target language data type that encloses an object of the source language.",
+    choices: ["a wrapper", "a link", "a cursor", "a form"],
+    answer: 1
+    },
+    {
+    question: "Which best explains getSelection()?",
+    choices: ["Returns the VALUE of a selected OPTION.", "Returns document.URL of the window in focus.", "Returns the value of cursor-selected text", "Returns the VALUE of a checked radio input."],
+    answer: 3
+    },
+    {
+    question: "What is mean by “this” keyword in javascript?",
+    choices: ["It refers current object", "It referes previous object", "It is variable which contains value", "None of the above"],
+    answer: 1
+    }     
     ]
     var count = 0;
     var limit = questions.length
@@ -46,6 +136,7 @@ var questions = [
     var noInitials = false
     var isString = ''
     var timeLeft = 0;
+    var timeInterval = ''
 
             // 
             var correctSound = new Audio('./assets/audio/correct.mp3');
@@ -92,6 +183,7 @@ var questions = [
         }      
     
     var endQuiz = function () {
+        // timerEl.textContent = ""
             // 
             mainContentEl.removeChild(questionHeading)
             answersGroup.removeChild(answerForm1)
@@ -163,7 +255,7 @@ var questions = [
         }
         else {
             var result = "Wrong!"
-            timeLeft = timeLeft - 5
+            timeLeft = timeLeft - 10
             incorrectSound.play()
         }
         showResult(result)
@@ -205,7 +297,8 @@ var questions = [
             count++
         }
         if (count === limit) {
-            endQuestions = true
+            clearInterval(timeInterval);
+            timerEl.textContent = ''
             endQuiz();
             
         }
@@ -224,13 +317,11 @@ var questions = [
         
         var runQuiz = function() {
             timeLeft = 75;
-            var timeInterval = setInterval(function() {
+            timeInterval = setInterval(function() {
               if (timeLeft === 0 ) {
                 timerEl.textContent = '';
                 clearInterval(timeInterval);
-                if (endQuestions === null){
-                    endQuiz();
-                }
+                endQuiz();
               }
               else {
                 timerEl.textContent = "Time: " + timeLeft 
