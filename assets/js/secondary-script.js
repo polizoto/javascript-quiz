@@ -105,28 +105,28 @@ var displayScore = function () {
 if (highScoresList.initial[0]) {
 topScore1.append(highScoresList.initial[0].toUpperCase() + " - " + highScoresList.score[0])
 }  else {
-   topScore1.append("")
+   topScore1.append("AAA")
 }
 if (highScoresList.initial[1]) {
     topScore2.append(highScoresList.initial[1].toUpperCase() + " - " + highScoresList.score[1])
 }  else {
-    topScore2.append("")
+    topScore2.append("AAA")
     }
 
 if (highScoresList.initial[2]) {
     topScore3.append(highScoresList.initial[2].toUpperCase() + " - " + highScoresList.score[2])
 }  else {
-    topScore3.append("")
+    topScore3.append("AAA")
     }
 if (highScoresList.initial[3]) {
     topScore4.append(highScoresList.initial[3].toUpperCase() + " - " + highScoresList.score[3])
 }  else {
-    topScore4.append("")
+    topScore4.append("AAA")
 }
 if (highScoresList.initial[4]) {
     topScore5.append(highScoresList.initial[4].toUpperCase() + " - " + highScoresList.score[4])
     }  else {
-    topScore5.append("")
+    topScore5.append("AAA")
     }    
 }    
 

@@ -318,7 +318,7 @@ var questions = [
         var runQuiz = function() {
             timeLeft = 75;
             timeInterval = setInterval(function() {
-              if (timeLeft === 0 ) {
+              if (timeLeft <= 0 ) {
                 timerEl.textContent = '';
                 clearInterval(timeInterval);
                 endQuiz();
