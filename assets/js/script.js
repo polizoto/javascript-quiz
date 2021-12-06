@@ -13,6 +13,9 @@ var questions = [
     var count = 0;
     var limit = questions.length
     var nextQuestion = false
+    var gameScore = {
+        score : 0
+    }
     var timerEl = document.getElementById('counter');
     var mainContentEl = document.querySelector("#main-content");
     var answersGroup = document.createElement("div")
@@ -65,7 +68,9 @@ var questions = [
              } 
               else {
                   mainContentEl.innerHTML = '';
-                //   startQuiz()
+                  gameScore.initial = initialsInput
+                  console.log(gameScore);
+                  localStorage["gameScore"] = JSON.stringify(gameScore);
                 window.location.href="./html/high-score.html";
               }
         }      
@@ -108,17 +113,12 @@ var questions = [
         endMessage.append(".")
         answersGroup.prepend(endMessage)
         answersGroup.prepend(endHeading)
-        endScore.textContent = userScore.score
+        endScore.textContent = gameScore.score
         endForm.addEventListener("submit", addHighScore);
     }
 
-    var userScore = {
-        score : 0,
-        initial: ''
-    }
-
     var addPoints = function() {
-        userScore.score = userScore.score + 5
+        gameScore.score = gameScore.score + 5
     }
 
     var showResult = function(result) {
