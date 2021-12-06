@@ -25,7 +25,7 @@ This projects demonstrates many common features in JavaScript programming, DOM m
 
 ## Screenshot
 
-!(screenshot of JavaScript Quiz)(/assets/images/screenshot.jpg)
+![screenshot of JavaScript Quiz](/assets/images/screenshot.jpg)
 
 ## Live Link
 
