@@ -13,8 +13,7 @@ This projects demonstrates many common features in JavaScript programming, DOM m
     * `addEventListener()` for common `event` objects: `click`, `submit`, `change`
     * `document.createElement()`
     * `.className =`
-    * `querySelector()`, `matches()`
-    * `.innerHTML =` 
+    * `querySelector()`
     * `setAttribute()`, `getAttribute()`
     * `append()`, `appendChild()`, `removes()`
 - Local storage:
@@ -22,8 +21,12 @@ This projects demonstrates many common features in JavaScript programming, DOM m
     * `JSON.stringify()`, `JSON.parse()`
 - Web API properties and methods
     * `setInterval()`
-    * `--timer`, `duration`
+    * `clearInterval()`
 
 ## Screenshot
 
+!(screenshot of JavaScript Quiz)(/assets/images/screenshot.jpg)
+
 ## Live Link
+
+[live application](https://polizoto.github.io/javascript-quiz/)
