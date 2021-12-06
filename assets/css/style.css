@@ -39,7 +39,6 @@ header {
 }
 
 .main   {
-    /* display: flex; */
     flex-direction: column;
 }
 
@@ -131,12 +130,8 @@ button:focus {
 }
 
 .initials {
-    /* color: white; */
-    /* background-color: #351C75; */
     border-radius: 5px;
-    /* border: none; */
-    text-align: center;
-    /* margin: 16px 0px 0px 0px; */
+    text-align: left;
     padding: 2px 5px;
     min-width: 180px;
     font-size: 16px;

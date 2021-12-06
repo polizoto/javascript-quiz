@@ -44,18 +44,34 @@ var questions = [
     questionAnswer4.className = "answers"
     questionAnswer4.setAttribute("data-answer", "4")
     var noInitials = false
+    var isString = ''
+    var timeLeft = 0;
 
             // 
             var correctSound = new Audio('./assets/audio/correct.mp3');
             var incorrectSound = new Audio('./assets/audio/wrong.mp3');
 
+    var checkLetters = function (str) {
+       if (/^[a-zA-Z]+$/.test(str)) {
+           isString = true
+       } else {
+            isString = false
+       }
+    }
+
     var addHighScore = function (event) {
             
             event.preventDefault();
             var initialsInput = document.querySelector("input[name='initials']").value;
+            checkLetters(initialsInput)
             
-            if (initialsInput.length > 2) {
+            if (initialsInput.length > 2 || initialsInput.length < 2) {
                 var initialsLength = true
+            }
+
+            if (isString === false) {
+                alert("Please enter only letters.");
+                return false
             }
 
             if (!initialsInput) {
@@ -63,7 +79,7 @@ var questions = [
                 return false;
               }
              else if (initialsLength){
-                alert("Please enter your first and last initials only.");
+                alert("Please enter only your first and last initial.");
                 return false;
              } 
               else {
@@ -147,6 +163,7 @@ var questions = [
         }
         else {
             var result = "Wrong!"
+            timeLeft = timeLeft - 5
             incorrectSound.play()
         }
         showResult(result)
@@ -206,7 +223,7 @@ var questions = [
         }
         
         var runQuiz = function() {
-            var timeLeft = 75;
+            timeLeft = 75;
             var timeInterval = setInterval(function() {
               if (timeLeft === 0 ) {
                 timerEl.textContent = '';
