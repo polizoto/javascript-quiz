@@ -8,8 +8,6 @@ var scoresGroup = document.createElement("div")
 scoresGroup.className = "scores-group"
 var scoresList = document.createElement("ul")
 
-
-
 var topScore1 = document.createElement("li")
 topScore1.className ="scores"
 var topScore1Initials = document.createElement("span")
@@ -58,36 +56,13 @@ var highScoresList = []
 var highScoresInitials = []
 var newList = ''
 var count = ''
-
-// var checkScores = function (score) {
-
-//     if (score.textContent.length == 0) {
-//         score.textContent = 0
-//     }
-// }
-
-// var checkInitials = function (initials) {
-
-//     if (initials.textContent.length == 0) {
-//         initials.textContent = "TBA"
-//     }
-// }
-
-// checkScores(topScore1Points)
-// checkScores(topScore2Points)
-// checkScores(topScore3Points)
-// checkScores(topScore4Points)
-// checkScores(topScore5Points)
-
-// checkInitials(topScore1Initials)
-// checkInitials(topScore2Initials)
-// checkInitials(topScore3Initials)
-// checkInitials(topScore4Initials)
-// checkInitials(topScore5Initials)
+var haveGameScore = false
 
 var clearHighScores = function (event) {
-    event.preventDefault();
+    // event.preventDefault();
     localStorage.removeItem("gameScore")
+    localStorage.removeItem("highScores")
+    window.location.reload();
 }
 
 var returnGroup = document.createElement("div")
@@ -126,55 +101,59 @@ returnGroup.appendChild(clearForm)
 returnForm.appendChild(returnButton)
 clearForm.appendChild(clearButton)
 
-// var checkHighScore = function (userScore, userInitials) {
-//     console.log(highScoresList.score.length);
-//     console.log(userScore);
-//     console.log(highScoresList.score[0]);
-//     for (var i = 0; i < highScoresList.score.length; i++) {
-//     if (userScore > highScoresList.score[i]) {
-//         console.log("Situation1");
-//         highScoresList.score.splice(1, 0, userScore)
-//         highScoresList.initial.splice(1, 0, userInitials)
-//         // localStorage["highScores"] = JSON.stringify(highScoresList);
-//         localStorage.setItem("highScores", JSON.stringify(highScoresList))
-//         // console.log(highScoreList.score[i]);
-//     }
-//     else {
-//         localStorage.setItem("highScores", JSON.stringify(highScoresList))
-//     }
-// }
-// }
-
 var displayScore = function () {
-console.log(highScoresList.score.length);
-// for (var i = 0; i < highScoresList.score.length; i++) {
-    topScore1.append(highScoresList.score[0] + " - " + highScoresList.initial[0])
-    topScore2.append(highScoresList.score[1] + " - " + highScoresList.initial[1]) 
-    topScore3.append(highScoresList.score[2] + " - " + highScoresList.initial[2]) 
-    topScore4.append(highScoresList.score[3] + " - " + highScoresList.initial[3]) 
-    topScore5.append(highScoresList.score[4] + " - " + highScoresList.initial[4])     
+if (highScoresList.initial[0]) {
+topScore1.append(highScoresList.initial[0] + " - " + highScoresList.score[0])
+}  else {
+   topScore1.append("TBA")
+}
+if (highScoresList.initial[1]) {
+    topScore2.append(highScoresList.initial[1] + " - " + highScoresList.score[1])
+}  else {
+    topScore2.append("TBA")
+    }
 
-// }
-
+if (highScoresList.initial[2]) {
+    topScore3.append(highScoresList.initial[2] + " - " + highScoresList.score[2])
+}  else {
+    topScore3.append("TBA")
+    }
+if (highScoresList.initial[3]) {
+    topScore4.append(highScoresList.initial[3] + " - " + highScoresList.score[3])
+}  else {
+    topScore4.append("TBA")
+}
+if (highScoresList.initial[4]) {
+    topScore5.append(highScoresList.initial[4] + " - " + highScoresList.score[4])
+    }  else {
+    topScore5.append("TBA")
+    }    
 }    
+
+var compareUserScore = function (n) {
+    highScoresList.score.splice(n, 0, userScore)
+    highScoresList.initial.splice(n, 0, userInitials)
+    localStorage["highScores"] = JSON.stringify(highScoresList);
+    localStorage.removeItem("gameScore")
+}
 
 var checkUserScore = function () {
     if (highScoresList.score[0] === undefined && highScoresList.initial[0] === undefined) {
         highScoresList.score[0] = userScore
         highScoresList.initial[0] = userInitials
-        console.log(highScoresList.score[0]);
-        console.log(highScoresList.initial[0]);
-        // Store in local storage
         localStorage["highScores"] = JSON.stringify(highScoresList);
+        localStorage.removeItem("gameScore")
     }
     else {
+    var m, n
+
     for (var i = 0; i < highScoresList.score.length; i++) {
-            if (userScore > highScoresList.score[i]) {
-                highScoresList.score.splice(i, 0, userScore)
-                highScoresList.initial.splice(i, 0, userInitials)
-                return localStorage["highScores"] = JSON.stringify(highScoresList);
-            }
+        n = 0
+        while (userScore < highScoresList.score[n]) {
+            n++;
         }
+        return compareUserScore(n)
+    }
 }
 }
 
@@ -184,8 +163,7 @@ var getUserScore = function () {
         gameScore = JSON.parse(localStorage["gameScore"])
         userScore = gameScore.score
         userInitials = gameScore.initial
-        console.log(userScore);
-        console.log(userInitials);
+        haveGameScore = true
     }
 }
 
@@ -199,40 +177,11 @@ highScoresList = JSON.parse(localStorage.getItem("highScores"))
         initial: []
     }
 }
-console.log(highScoresList);
-console.log(highScoresList.score.length);
-console.log(highScoresList.initial.length);
 }
 
 getHighScore()
 getUserScore()
-checkUserScore()
+if (haveGameScore === true) {
+    checkUserScore()
+}
 displayScore()
-
-
-// console.log(highScoresList);
-// else {
-    // var retrievePoints = JSON.parse(localStorage["gameScore"]);
-
-// }
-
-
-// Check User score against the set of high Scores
-// var checkHighScore = function() {
-    // for (var i = 0; i <= highScoresLog.length; i++)
-    // if (retrievePoints.score > highScoresLog[i]) {
-    //     var index = i - 1
-    //     highScoresLog.splice(1, 0, retrievePoints.score)
-    //     highScoresInitials[i] = retrievePoints.initial
-    //     // return console.log(retrieveHighPoints[i]);
-    //     return
-//     }
-//     else {
-//         return console.log("You did not get a high score");
-//     }
-// }
-// // Call the function
-// checkHighScore()
-
-// // Update the set of High Scores to include only set of five
-// console.log(highScoresList.slice(1).slice(-5))
